@@ -45,7 +45,7 @@ class QuillRawEditorMultiChildRenderObject
 
   @override
   RenderEditor createRenderObject(BuildContext context) {
-    return RenderEditor(
+    final renderEditor = RenderEditor(
       offset: offset,
       document: document,
       textDirection: textDirection,
@@ -62,7 +62,11 @@ class QuillRawEditorMultiChildRenderObject
       scrollBottomInset: scrollBottomInset,
       floatingCursorDisabled: floatingCursorDisabled,
     );
+    globalRenderEditor = renderEditor;
+    return renderEditor;
   }
+
+  static RenderEditor? globalRenderEditor;
 
   @override
   void updateRenderObject(
