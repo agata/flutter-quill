@@ -7,6 +7,7 @@ import 'package:flutter/material.dart'
         TextCapitalization,
         TextInputAction,
         TextMagnifierConfiguration;
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart'
     show
         Action,
@@ -17,15 +18,16 @@ import 'package:flutter/widgets.dart'
         EdgeInsetsGeometry,
         FocusNode,
         Intent,
+        KeyEventResult,
+        MouseCursor,
         ScrollController,
         ScrollPhysics,
         ShortcutActivator,
+        SystemMouseCursors,
         TextFieldTapRegion,
         TextSelectionControls,
         ValueChanged,
-        Widget,
-        MouseCursor,
-        SystemMouseCursors;
+        Widget;
 
 import '../../../controller/quill_controller.dart';
 import '../../../editor/embed/embed_editor_builder.dart';
@@ -95,6 +97,7 @@ class QuillRawEditorConfigurations extends Equatable {
     this.magnifierConfiguration,
     this.onPerformAction,
     this.customLeadingBuilder,
+    this.onKeyEvent,
   });
 
   /// Controls the document being edited.
@@ -361,6 +364,9 @@ class QuillRawEditorConfigurations extends Equatable {
 
   /// Called when a text input action is performed.
   final void Function(TextInputAction action)? onPerformAction;
+
+  /// Called when a key event is triggered.
+  final KeyEventResult Function(KeyEvent event)? onKeyEvent;
 
   @override
   List<Object?> get props => [

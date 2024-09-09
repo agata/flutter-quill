@@ -90,6 +90,7 @@ class QuillEditorConfigurations extends Equatable {
     this.readOnlyMouseCursor = SystemMouseCursors.text,
     this.onPerformAction,
     this.customLeadingBlockBuilder,
+    this.onKeyEvent,
   });
 
   final QuillSharedConfigurations sharedConfigurations;
@@ -403,6 +404,9 @@ class QuillEditorConfigurations extends Equatable {
   /// Called when a text input action is performed.
   final void Function(TextInputAction action)? onPerformAction;
 
+  /// Called when a key event is triggered.
+  final KeyEventResult Function(KeyEvent event)? onKeyEvent;
+
   @override
   List<Object?> get props => [
         placeholder,
@@ -471,6 +475,7 @@ class QuillEditorConfigurations extends Equatable {
     void Function()? onScribbleActivated,
     EdgeInsets? scribbleAreaInsets,
     void Function(TextInputAction action)? onPerformAction,
+    KeyEventResult Function(KeyEvent event)? onKeyEvent,
   }) {
     return QuillEditorConfigurations(
       sharedConfigurations: sharedConfigurations ?? this.sharedConfigurations,
@@ -544,6 +549,7 @@ class QuillEditorConfigurations extends Equatable {
       onScribbleActivated: onScribbleActivated ?? this.onScribbleActivated,
       scribbleAreaInsets: scribbleAreaInsets ?? this.scribbleAreaInsets,
       onPerformAction: onPerformAction ?? this.onPerformAction,
+      onKeyEvent: onKeyEvent ?? this.onKeyEvent,
     );
   }
 }

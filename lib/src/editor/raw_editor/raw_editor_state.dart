@@ -739,6 +739,13 @@ class QuillRawEditorState extends EditorState
   }
 
   KeyEventResult _onKeyEvent(node, KeyEvent event) {
+    if (widget.configurations.onKeyEvent != null) {
+      final result = widget.configurations.onKeyEvent!(event);
+      if (result != KeyEventResult.ignored) {
+        return result;
+      }
+    }
+
     // Don't handle key if there is a meta key pressed.
     if (HardwareKeyboard.instance.isAltPressed ||
         HardwareKeyboard.instance.isControlPressed ||
