@@ -206,6 +206,17 @@ mixin RawEditorStateTextInputClientMixin on EditorState
 
     final effectiveLastKnownValue = _lastKnownRemoteTextEditingValue!;
     _lastKnownRemoteTextEditingValue = value;
+
+    // If the composing process has been completed, such as through IME commit actions,
+    // the text is already in the correct state from the previous call, so no update is needed.
+    final isUpdateAfterComposingCommit =
+        effectiveLastKnownValue.isComposingRangeValid == true &&
+            value.isComposingRangeValid == false;
+    if (isUpdateAfterComposingCommit) {
+      widget.controller.updateSelection(value.selection, ChangeSource.local);
+      return;
+    }
+
     final oldText = effectiveLastKnownValue.text;
     final text = value.text;
     final cursorPosition = value.selection.extentOffset;
