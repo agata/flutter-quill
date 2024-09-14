@@ -1068,7 +1068,8 @@ class QuillRawEditorState extends EditorState
         widget.configurations.enableInteractiveSelection,
         _hasFocus,
         MediaQuery.devicePixelRatioOf(context),
-        _cursorCont);
+        _cursorCont,
+        _styles!.inlineCode!);
     return editableTextLine;
   }
 
