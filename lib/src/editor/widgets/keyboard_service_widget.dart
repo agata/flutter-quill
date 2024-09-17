@@ -28,6 +28,7 @@ class QuillKeyboardServiceWidget extends StatelessWidget {
     required this.spaceEvents,
     this.customShortcuts,
     this.customActions,
+    this.onKeyEvent,
     super.key,
   });
 
@@ -42,6 +43,7 @@ class QuillKeyboardServiceWidget extends StatelessWidget {
   final BoxConstraints constraints;
   final FocusNode focusNode;
   final Widget child;
+  final FocusOnKeyEventCallback? onKeyEvent;
 
   @override
   Widget build(BuildContext context) {
@@ -71,6 +73,13 @@ class QuillKeyboardServiceWidget extends StatelessWidget {
   }
 
   KeyEventResult _onKeyEvent(node, KeyEvent event) {
+    // Allow the user to handle the key event first.
+    if (onKeyEvent != null) {
+      final result = onKeyEvent!(node, event);
+      if (result != KeyEventResult.ignored) {
+        return result;
+      }
+    }
     // Don't handle key if there is a meta key pressed.
     if (HardwareKeyboard.instance.isAltPressed ||
         HardwareKeyboard.instance.isControlPressed ||
