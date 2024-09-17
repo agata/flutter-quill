@@ -542,6 +542,7 @@ class QuillRawEditorState extends EditorState
               widget.configurations.enableAlwaysIndentOnTab,
           customShortcuts: widget.configurations.customShortcuts,
           customActions: widget.configurations.customActions,
+          onKeyEvent: widget.configurations.onKeyEvent,
           child: child,
         ),
       ),
