@@ -16,17 +16,16 @@ import 'package:flutter/widgets.dart'
         EdgeInsets,
         EdgeInsetsGeometry,
         FocusNode,
-        FocusOnKeyEventCallback,
         Intent,
-        MouseCursor,
         ScrollController,
         ScrollPhysics,
         ShortcutActivator,
-        SystemMouseCursors,
         TextFieldTapRegion,
         TextSelectionControls,
         ValueChanged,
-        Widget;
+        Widget,
+        MouseCursor,
+        SystemMouseCursors;
 
 import '../../../controller/quill_controller.dart';
 import '../../../editor/embed/embed_editor_builder.dart';
@@ -100,7 +99,6 @@ class QuillRawEditorConfigurations extends Equatable {
     this.readOnlyMouseCursor = SystemMouseCursors.text,
     this.magnifierConfiguration,
     this.onPerformAction,
-    this.onKeyEvent,
     this.customLeadingBuilder,
   });
 
@@ -416,9 +414,6 @@ class QuillRawEditorConfigurations extends Equatable {
 
   /// Called when a text input action is performed.
   final void Function(TextInputAction action)? onPerformAction;
-
-  /// Called when a key event is triggered.
-  final FocusOnKeyEventCallback? onKeyEvent;
 
   @override
   List<Object?> get props => [

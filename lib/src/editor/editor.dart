@@ -363,7 +363,6 @@ class QuillEditorState extends State<QuillEditor>
               magnifierConfiguration: configurations.magnifierConfiguration,
               textInputAction: configurations.textInputAction,
               onPerformAction: configurations.onPerformAction,
-              onKeyEvent: configurations.onKeyEvent,
             ),
           ),
         ),
