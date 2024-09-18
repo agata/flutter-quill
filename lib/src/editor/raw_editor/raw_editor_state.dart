@@ -709,22 +709,21 @@ class QuillRawEditorState extends EditorState
       customLinkPrefixes: widget.configurations.customLinkPrefixes,
     );
     final editableTextLine = EditableTextLine(
-      node,
-      null,
-      textLine,
-      _getHorizontalSpacingForLine(node, _styles),
-      _getVerticalSpacingForLine(node, _styles),
-      _textDirection,
-      controller.selection,
-      widget.configurations.selectionColor,
-      widget.configurations.enableInteractiveSelection,
-      _hasFocus,
-      MediaQuery.devicePixelRatioOf(context),
-      _cursorCont,
-      _styles!.inlineCode!,
-      composingRange.value,
-      _styles!.paragraph!.style.color!,
-    );
+        node,
+        null,
+        textLine,
+        _getHorizontalSpacingForLine(node, _styles),
+        _getVerticalSpacingForLine(node, _styles),
+        _textDirection,
+        controller.selection,
+        widget.configurations.selectionColor,
+        widget.configurations.enableInteractiveSelection,
+        _hasFocus,
+        MediaQuery.devicePixelRatioOf(context),
+        _cursorCont,
+        _styles!.inlineCode!,
+        composingRange.value,
+        _styles!.paragraph!.style.color!);
     return editableTextLine;
   }
 
@@ -994,6 +993,7 @@ class QuillRawEditorState extends EditorState
     controller.removeListener(_didChangeTextEditingValueListener);
     widget.configurations.focusNode.removeListener(_handleFocusChanged);
     _cursorCont.dispose();
+    composingRange.removeListener(_onComposingRangeChanged);
     if (_clipboardStatus != null) {
       _clipboardStatus!
         ..removeListener(_onChangedClipboardStatus)
