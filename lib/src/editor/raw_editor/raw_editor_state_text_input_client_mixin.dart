@@ -103,9 +103,7 @@ mixin RawEditorStateTextInputClientMixin on EditorState
         textEditingValue.composing;
     if (hasConnection) {
       assert(mounted);
-      final offset = composingRange.isValid
-          ? composingRange.start
-          : renderEditor.selection.baseOffset;
+      final offset = composingRange.isValid ? composingRange.start : 0;
       final composingRect =
           renderEditor.getLocalRectForCaret(TextPosition(offset: offset));
       _textInputConnection!.setComposingRect(composingRect);
