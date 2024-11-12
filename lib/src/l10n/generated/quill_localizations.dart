@@ -19,9 +19,11 @@ import 'quill_localizations_fa.dart';
 import 'quill_localizations_fr.dart';
 import 'quill_localizations_he.dart';
 import 'quill_localizations_hi.dart';
+import 'quill_localizations_hu.dart';
 import 'quill_localizations_id.dart';
 import 'quill_localizations_it.dart';
 import 'quill_localizations_ja.dart';
+import 'quill_localizations_km.dart';
 import 'quill_localizations_ko.dart';
 import 'quill_localizations_ku.dart';
 import 'quill_localizations_ms.dart';
@@ -146,9 +148,11 @@ abstract class FlutterQuillLocalizations {
     Locale('fr'),
     Locale('he'),
     Locale('hi'),
+    Locale('hu'),
     Locale('id'),
     Locale('it'),
     Locale('ja'),
+    Locale('km'),
     Locale('ko'),
     Locale('ku'),
     Locale('ku', 'CKB'),
@@ -758,6 +762,12 @@ abstract class FlutterQuillLocalizations {
   /// In en, this message translates to:
   /// **'Insert table'**
   String get insertTable;
+
+  /// No description provided for @insertVideo.
+  ///
+  /// In en, this message translates to:
+  /// **'Insert video'**
+  String get insertVideo;
 }
 
 class _FlutterQuillLocalizationsDelegate
@@ -786,9 +796,11 @@ class _FlutterQuillLocalizationsDelegate
         'fr',
         'he',
         'hi',
+        'hu',
         'id',
         'it',
         'ja',
+        'km',
         'ko',
         'ku',
         'ms',
@@ -893,12 +905,16 @@ FlutterQuillLocalizations lookupFlutterQuillLocalizations(Locale locale) {
       return FlutterQuillLocalizationsHe();
     case 'hi':
       return FlutterQuillLocalizationsHi();
+    case 'hu':
+      return FlutterQuillLocalizationsHu();
     case 'id':
       return FlutterQuillLocalizationsId();
     case 'it':
       return FlutterQuillLocalizationsIt();
     case 'ja':
       return FlutterQuillLocalizationsJa();
+    case 'km':
+      return FlutterQuillLocalizationsKm();
     case 'ko':
       return FlutterQuillLocalizationsKo();
     case 'ku':

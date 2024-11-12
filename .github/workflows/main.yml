@@ -1,5 +1,7 @@
 name: 🧪 Run Tests
 
+# TODO: Split the tests into tests.yml and quality checks into checks.yml once start using https://pub.dev/packages/melos
+
 on:
   push:
     branches: [master, dev]
@@ -26,18 +28,12 @@ jobs:
 
       - name: 📥 Install Flutter dependencies
         run: flutter pub get
-
-      - name: 📦 Install dart_quill_delta dependencies
-        run: flutter pub get -C dart_quill_delta
       
       - name: 📦 Install flutter_quill_extensions dependencies
         run: flutter pub get -C flutter_quill_extensions
 
       - name: 📦 Install flutter_quill_test dependencies
         run: flutter pub get -C flutter_quill_test
-
-      - name: 📦 Install quill_native_bridge dependencies
-        run: flutter pub get -C quill_native_bridge
 
       - name: 🔍 Run Flutter analysis
         run: flutter analyze
@@ -55,4 +51,11 @@ jobs:
         run: flutter test
 
       - name: 🔍 Check the translations
-        run: dart ./scripts/ensure_translations_correct.dart
+        run: dart ./scripts/translations_check.dart
+
+      - name: 📥 Install cider
+        run: dart pub global activate cider
+
+      # TODO: Need a more strict way to validate the format that uses https://keepachangelog.com/en/1.1.0/
+      - name: 🔍 Validate CHANGELOG.md format
+        run: $HOME/.pub-cache/bin/cider list CHANGELOG.md
